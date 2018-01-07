@@ -10,10 +10,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "http-proxy": "^1.16.2",
     "jsonwebtoken": "^7.4.0",
     "koa": "^2.4.1",
     "koa-bodyparser": "^3.2.0",
     "koa-router": "^7.1.1",
+    "koa-static": "^4.0.2",
     "mongoose": "^4.11.0",
     "sha1": "^1.1.1"
   }
