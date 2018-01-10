@@ -2,7 +2,6 @@
 const Koa = require('koa');
 const static = require('koa-static')
 const path = require("path")
-const cors = require('koa2-cors');//跨域
 const app = new Koa();
 
 //配置文件
@@ -32,20 +31,6 @@ db.on('error', () => {
 db.once('open', () => {
     console.log('数据库连接成功！');
 });
-
-app.use(cors());//跨域 可删
-
-app.use(cors({
-    origin: function (ctx) {
-        return "*";
-        return 'http://localhost:8080'; // 这样就能只允许 http://localhost:8080 这个域名的请求了
-    },
-    exposeHeaders: ['WWW-Authenticate', 'Server-Authorization'],
-    maxAge: 5,
-    credentials: true,
-    allowMethods: ['GET', 'POST', 'DELETE'],
-    allowHeaders: ['Content-Type', 'Authorization', 'Accept'],
-}))
 
 
 //输出请求的方法，url,和所花费的时间
