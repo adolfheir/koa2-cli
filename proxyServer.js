@@ -25,7 +25,7 @@ var server = http.createServer(function (req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', '*',)
     res.setHeader('Access-Control-Expose-Headers','Accept-Ranges, Content-Encoding, Content-Length, Content-Range')
-    proxy.web(req, res, { target: 'http://127.0.0.1:8338/' });
+    proxy.web(req, res, { target: 'http://127.0.0.1:3000/' });
 });
 server.listen(PORT);
 console.log("Server runing at port: " + PORT + ".");
