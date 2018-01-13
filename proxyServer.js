@@ -1,7 +1,7 @@
 var PORT = 28080;
 
 var http = require('http');
-var path=require('path');
+var path = require('path');
 var httpProxy = require('http-proxy');
 
 var proxy = httpProxy.createProxyServer({
@@ -13,7 +13,7 @@ var proxy = httpProxy.createProxyServer({
     // },
     // secure: false
 });
-proxy.on('error', function(err, req, res){
+proxy.on('error', function (err, req, res) {
     res.writeHead(500, {
         'content-type': 'text/plain'
     });
@@ -22,10 +22,11 @@ proxy.on('error', function(err, req, res){
 });
 
 var server = http.createServer(function (req, res) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', '*',)
-    res.setHeader('Access-Control-Expose-Headers','Accept-Ranges, Content-Encoding, Content-Length, Content-Range')
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With");
     proxy.web(req, res, { target: 'http://127.0.0.1:3000/' });
+
 });
 server.listen(PORT);
 console.log("Server runing at port: " + PORT + ".");
