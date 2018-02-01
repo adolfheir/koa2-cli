@@ -23,7 +23,7 @@ const router =require('./server/routes');
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 const mongoUrl = `mongodb://${ config.mongodb.user }:${ config.mongodb.password }@${ config.mongodb.host }:${ config.mongodb.port }/${ config.mongodb.database }`; 
-mongoose.connect(mongoUrl);
+mongoose.connect(mongoUrl,{ config: { autoIndex: false } });
 const db = mongoose.connection;
 db.on('error', () => {
     console.log('数据库连接出错!');
@@ -31,6 +31,7 @@ db.on('error', () => {
 db.once('open', () => {
     console.log('数据库连接成功！');
 });
+
 
 
 //输出请求的方法，url,和所花费的时间
@@ -52,7 +53,7 @@ app.use(response);
 app.use(errorHandle);
 
 //使用initAdmin中间件 //初始化后台管理用户
-app.use(initAdmin);
+// app.use(initAdmin);
 
 // 静态资源目录对于相对入口文件server.js的路径
 app.use(static(path.join(__dirname, './view')))

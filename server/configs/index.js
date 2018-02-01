@@ -7,24 +7,20 @@ let config = {
    },
    jwt: {
        secret: 'secret',            
-       exprisesIn: '7200s'          //以秒为单位
+       exprisesIn: '86400s'          //以秒为单位//24小时
    },
    mongodb: {
        host: '127.0.0.1',
-       database: 'spird',
+       database: 'competition',
        port: 27017,
        user: '',                    //非必填
        password: ''                 //非必填
    },
    app: {
-       port: process.env.PORT || 3000,
+       port: process.env.PORT || 3001,
        routerBaseApi: '/api'
    }
 };
 
-//可以新建一个private.js定义自己的私有配置
-if(fs.existsSync(__dirname + '/private.js')){
-    config = Object.assign(config, require('./private.js'));
-}
 
 module.exports = config;

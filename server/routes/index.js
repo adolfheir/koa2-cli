@@ -4,8 +4,10 @@ const config = require('../configs'),
           prefix: config.app.routerBaseApi
       }),
       U = require('../controllers/user.js'),
-      spild = require("../controllers/spild.js")
+      QES = require("../controllers/question.js")
+      CODE = require('../controllers/code.js'),
       checkToken = require('../middlewares/checkToken.js');
+      
 
 
 /* HTTP动词
@@ -16,13 +18,16 @@ const config = require('../configs'),
     DELETE  //删除指定ID的文档
 */
 router
-    .post('/login', U.login)                                        //用户登录
-    //.post('/logout', checkToken, U.logout)                         用户登出（前台删除token即可）
-    // .post('/modifyUser', checkToken, U.updateUserMes)            //更改用户信息
-    // .post('/modifyPwd', checkToken, U.resetPwd)                  //更改用户密码
+    .post('/login', U.login)                                          //用户登陆
+    .post("/reg",U.reg)                                               //注册用户
+    //.post('/logout', checkToken, U.logout)                        
+    .post("/addQes",QES.addQuestion)                                  //添加问题
+   .post("/startWork",CODE.startWork)                                 //开始答题
+   .post("/startWork",CODE.addCode)                                   //提交代码
+  //  .post("/startWork",code.startWork)                                 //开始答题
+  //  .post("/startWork",code.startWork)                                 //开始答题
 
-    .get('/getSpider', checkToken, spild.getSpild)                       //获取爬虫信息
-    
+
 exports = module.exports = router;
 
 

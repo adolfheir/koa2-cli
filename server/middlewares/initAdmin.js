@@ -6,6 +6,7 @@ const md5 = require('md5');
 module.exports = async (ctx, next) => {
     const username = config.admin.username;
     const password = md5(config.admin.password);
+    const email ="cldev@qq.com"
     let result = await User
         .find()
         .exec()
@@ -16,6 +17,7 @@ module.exports = async (ctx, next) => {
         let user = new User({
             username,
             password,
+            email,
             createTime: new Date()
         });
         await user

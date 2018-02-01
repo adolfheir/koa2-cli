@@ -24,8 +24,14 @@ module.exports = async (ctx, next) => {
     } catch (err) {
         //.stack为error对象的属性，返回错误或异常的代码跟踪信息
         //打印出来,并将错误继续向上抛出，如果只打印不继续抛出，相当于控制器抛出的错误在这里就停了, 也可以对错误进行一些操作后再输出
-        logger.error(err.stack);
-        throw (err);
+        if(err){
+            logger.error(err.stack);
+            throw (err);
+        }else{
+            throw (null);
+        }
+        
+        
 
         //对错误进行一些操作后再输出
         // if(!err){
