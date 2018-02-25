@@ -1,29 +1,30 @@
 //koa
 const Koa = require('koa');
 const static = require('koa-static')
+const compress = require('koa-compress')
 const path = require("path")
 const app = new Koa();
 
 //配置文件
-const config =require('./server/configs');
+const config = require('./server/configs');
 
 //response中间件
-const response =require('./server/middlewares/response.js');
+const response = require('./server/middlewares/response.js');
 
 //try/catch中间件
-const errorHandle =require('./server/middlewares/errorHandle.js');
+const errorHandle = require('./server/middlewares/errorHandle.js');
 
 //initAdmin中间件
-const initAdmin =require('./server/middlewares/initAdmin.js');
+const initAdmin = require('./server/middlewares/initAdmin.js');
 
 //引入路由
-const router =require('./server/routes');
+const router = require('./server/routes');
 
 //mongoose
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
-const mongoUrl = `mongodb://${ config.mongodb.user }:${ config.mongodb.password }@${ config.mongodb.host }:${ config.mongodb.port }/${ config.mongodb.database }`; 
-mongoose.connect(mongoUrl,{ config: { autoIndex: false } });
+const mongoUrl = `mongodb://${config.mongodb.user}:${config.mongodb.password}@${config.mongodb.host}:${config.mongodb.port}/${config.mongodb.database}`;
+mongoose.connect(mongoUrl, { config: { autoIndex: false } });
 const db = mongoose.connection;
 db.on('error', () => {
     console.log('数据库连接出错!');
@@ -39,8 +40,15 @@ app.use(async (ctx, next) => {
     let start = new Date();
     await next();
     let ms = new Date() - start;
-    console.log(`${ ctx.method } ${ ctx.url } - ${ ms } ms`);
+    console.log(`${ctx.method} ${ctx.url} - ${ms} ms`);
 });
+
+//使用gzip 中间件
+app.use(compress({
+    threshold: 2048,
+    flush: require('zlib').Z_SYNC_FLUSH
+}))
+
 
 //bodyParser中间件
 const bodyParser = require('koa-bodyparser');
