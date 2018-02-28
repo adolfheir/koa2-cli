@@ -17,10 +17,10 @@
     "koa-compress": "^2.0.0",
     "koa-router": "^7.1.1",
     "koa-static": "^4.0.2",
+    "log4js": "^2.5.3",
     "md5": "^2.2.1",
     "moment": "^2.18.1",
     "mongoose": "^4.9.9",
-    "request": "^2.83.0",
-    "tracer": "^0.8.9"
+    "request": "^2.83.0"
   }
 }

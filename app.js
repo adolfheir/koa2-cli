@@ -11,8 +11,8 @@ const config = require('./server/configs');
 //response中间件
 const response = require('./server/middlewares/response.js');
 
-//try/catch中间件
-const errorHandle = require('./server/middlewares/errorHandle.js');
+//log4j中间件
+const log4j = require("./server/middlewares/log4j.js")
 
 //initAdmin中间件
 const initAdmin = require('./server/middlewares/initAdmin.js');
@@ -33,15 +33,8 @@ db.once('open', () => {
     console.log('数据库连接成功！');
 });
 
-
-
-//输出请求的方法，url,和所花费的时间
-app.use(async (ctx, next) => {
-    let start = new Date();
-    await next();
-    let ms = new Date() - start;
-    console.log(`${ctx.method} ${ctx.url} - ${ms} ms`);
-});
+//使用log4j
+app.use(log4j)
 
 //使用gzip 中间件
 app.use(compress({
@@ -57,8 +50,6 @@ app.use(bodyParser());
 //使用response中间件(放在最前面)
 app.use(response);
 
-//使用errorHandle中间件
-app.use(errorHandle);
 
 //使用initAdmin中间件 //初始化后台管理用户
 // app.use(initAdmin);
