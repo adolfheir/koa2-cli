@@ -1,26 +1,25 @@
 {
-  "name": "token",
-  "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "http-proxy": "^1.16.2",
-    "jsonwebtoken": "^7.4.1",
-    "koa": "^2.2.0",
-    "koa-bodyparser": "^4.2.0",
-    "koa-compress": "^2.0.0",
-    "koa-router": "^7.1.1",
-    "koa-static": "^4.0.2",
-    "log4js": "^2.5.3",
-    "md5": "^2.2.1",
-    "moment": "^2.18.1",
-    "mongoose": "^4.9.9",
-    "request": "^2.83.0"
-  }
+    "name": "token",
+    "version": "1.0.0",
+    "description": "",
+    "main": "server.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node server.js"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "http-proxy": "^1.16.2",
+        "jsonwebtoken": "^7.4.1",
+        "koa": "^2.2.0",
+        "koa-bodyparser": "^4.2.0",
+        "koa-compress": "^2.0.0",
+        "koa-router": "^7.1.1",
+        "koa-static": "^4.0.2",
+        "log4js": "^2.5.3",
+        "md5": "^2.2.1",
+        "mysql2": "^1.5.3",
+        "sequelize": "^4.37.6"
+    }
 }

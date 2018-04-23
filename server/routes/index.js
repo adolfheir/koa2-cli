@@ -1,13 +1,11 @@
 const config = require('../configs'),
-      Router = require('koa-router'),
-      router = new Router({
-          prefix: config.app.routerBaseApi
-      }),
-      U = require('../controllers/user.js'),
-      QES = require("../controllers/question.js")
-      CODE = require('../controllers/code.js'),
-      checkToken = require('../middlewares/checkToken.js');
-      
+    Router = require('koa-router'),
+    router = new Router({
+        prefix: config.app.routerBaseApi
+    }),
+    U = require('../controllers/user.js'),
+    checkToken = require('../middlewares/checkToken.js');
+
 
 
 /* HTTP动词
@@ -19,13 +17,7 @@ const config = require('../configs'),
 */
 router
     .post('/login', U.login)                                          //用户登陆
-    .post("/reg",U.reg)                                               //注册用户
-    //.post('/logout', checkToken, U.logout)                        
-    .post("/addQes",QES.addQuestion)                                  //添加问题
-   .post("/startWork",CODE.startWork)                                 //开始答题
-   .post("/startWork",CODE.addCode)                                   //提交代码
-  //  .post("/startWork",code.startWork)                                 //开始答题
-  //  .post("/startWork",code.startWork)                                 //开始答题
+    .post("/reg", U.reg)                                               //注册用户
 
 
 exports = module.exports = router;
