@@ -12,7 +12,7 @@ class UserController {
     static async login(ctx) {
         let { username, password } = ctx.request.body
         if (!username || !password) {
-            ctx.success({
+            ctx.error({
                 msg: '参数错误',
                 success: false
             });
@@ -35,14 +35,14 @@ class UserController {
                     success: true
                 });
             } else {
-                ctx.success({
+                ctx.error({
                     msg: '账号密码错误',
                     success: false
                 });
             }
         } catch (error) {
             // console.log(error)
-            ctx.success({
+            ctx.error({
                 msg: '服务器内部错误-查询用户失败',
                 success: false
             });
@@ -53,7 +53,7 @@ class UserController {
     static async reg(ctx) {
         let { username, password, phone } = ctx.request.body;
         if (!username || !password || !phone) {
-            ctx.success({
+            ctx.error({
                 msg: '参数错误',
                 success: false
             });
@@ -62,7 +62,7 @@ class UserController {
         try {
             let _person = await User.find({ where: { user_phone: phone } })
             if (_person) {
-                ctx.success({
+                ctx.error({
                     msg: '用户已存在',
                     success: false
                 });
@@ -79,7 +79,7 @@ class UserController {
                 success: true
             });
         } catch (error) {
-            ctx.success({
+            ctx.error({
                 msg: '服务器错误',
                 success: false
             })

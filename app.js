@@ -3,6 +3,7 @@ const Koa = require('koa');
 const static = require('koa-static')
 const compress = require('koa-compress')
 const bodyParser = require('koa-bodyparser');
+const cors = require('koa2-cors');
 const path = require("path")
 const app = new Koa();
 
@@ -18,6 +19,20 @@ const log4j = require("./server/middlewares/log4j.js")
 
 //引入路由
 const router = require('./server/routes');
+
+// 跨域
+app.use(cors({
+    origin: function (ctx) {
+        return "*"
+        // return 'http://localhost:8080'; / 这样就能只允许 http://localhost:8080 这个域名的请求了
+    },
+    exposeHeaders: ['WWW-Authenticate', 'Server-Authorization'],
+    maxAge: 5,
+    credentials: true,
+    allowMethods: ['GET', 'POST', 'DELETE'],
+    allowHeaders: ['Content-Type', 'Authorization', 'Accept'],
+}))
+
 
 //使用response中间件(放在最前面)
 app.use(response);
