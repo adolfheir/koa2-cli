@@ -1,11 +1,11 @@
 const config = require('../configs');
 const jwt = require('jsonwebtoken');
 //返回一个token
-module.exports = (userId) => {
+module.exports = (userInfo) => {
     let privateKey = config.jwt.secret;
     let expiresIn = config.jwt.exprisesIn;
     const token = jwt.sign({
-            id: userId
+        userInfo: userInfo
         }, privateKey, {
             expiresIn
         });

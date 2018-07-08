@@ -16,9 +16,9 @@ const config = require('../configs'),
     DELETE  //删除指定ID的文档
 */
 router
-    .post('/login', U.login)                                          //用户登陆
-    .post("/reg", U.reg)                                               //注册用户
-
+    .post('/user/login', U.login)                                          //用户登陆
+    .post("/user/reg", U.reg)                                               //注册用户
+    .get("/user/info",checkToken,U.info)
 
 exports = module.exports = router;
 

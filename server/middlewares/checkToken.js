@@ -7,6 +7,7 @@ module.exports = async (ctx, next) => {
     let token = authorization;
     try {
       let decoded = jwt.verify(token, config.jwt.secret);
+      ctx.jwt = decoded.userInfo
       // console.log(decoded);返回如下
       // { id: '5934afe7adb12d30f0679b41',
       // iat: 1496629988,
